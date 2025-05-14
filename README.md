@@ -109,7 +109,7 @@ We first tested our approach on a 50,000-row subset (`small_df`) for faster iter
 
 **Full Dataset Implementation**  
 
-For the complete `final_df`, we maintained the same seed (42) for an 80-20 train-test split, removing score values from test data. The model accepted tokenized sentences truncated to 32 tokens for efficiency, paired with similarity scores. 
+For the complete `final_df`, we maintained the same seed (42) for an 80-20 train-test split, removing score values from test data. The model takes tokenized sentences truncated to 32 tokens for efficiency, paired with similarity scores. 
 
 The `BERTSimilarityModel` architecture is built upon BERT with:
 - Dropout layers for regularization  
