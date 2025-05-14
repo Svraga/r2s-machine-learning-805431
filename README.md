@@ -31,8 +31,7 @@ You only need these 3 files in the same directory:
   ## About
 - This application uses a fine-tuned multilingual BERT model to calculate semantic similarity between sentences in different languages. 
 - **Multilingual Support**: Works with the following languages:  
-  Italian | English | French | Spanish | German  
-  Portuguese | Dutch | Japanese | Russian | Polish | Chinese
-- The model outputs a score from 0 to 5, where:0 No similarity, 5 Nearly identical meaning
+     Italian | English | French | Spanish | German | Portuguese | Dutch | Japanese | Russian | Polish | Chinese
+- The model outputs a score from 0 to 5, where: 0 No similarity, 5 Nearly identical meaning
 
   
