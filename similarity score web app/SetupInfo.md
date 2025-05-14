@@ -9,9 +9,9 @@ A simple web application that calculates the semantic similarity between two sen
 
 ### Required Files
 You only need these 3 files in the same directory:
-- [`app.py`](https://github.com/svraga/r2s-machine-learning805431/raw/main/app.py) - The main application file
-- [`bert_similarity_model_weights.pth`](https://github.com/svraga/r2s-machine-learning805431/raw/main/weights/bert_similarity_model_weights.pth) - Model weights (download from weights folder)
-- [`requirements.txt`](https://github.com/svraga/r2s-machine-learning805431/raw/main/requirements.txt) - Python dependencies
+- [`app.py`](https://github.com/svraga/r2s-machine-learning805431/raw/main/similarity%20score%20web%20app/app.py) - The main application file
+- [`bert_similarity_model_weights.pth`](https://github.com/svraga/r2s-machine-learning805431/raw/main/similarity%20score%20web%20app/bert_similarity_model_weights.pth) - Model weights (download from weights folder)
+- [`requirements.txt`](https://github.com/svraga/r2s-machine-learning805431/raw/main/similarity%20score%20web%20app/requirements.txt) - Python dependencies
 
 ### Installation and Setup
 
