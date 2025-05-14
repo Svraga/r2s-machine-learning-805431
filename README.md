@@ -29,20 +29,20 @@ The languages were processed in three phases:
 - **Second Phase**: Portuguese (pt), Polish (pl)  
 - **Third Phase**: Japanese (ja)  
 
-### First Phase Implementation
+### FIRST PHASE
 
 For the initial eight languages, we employed backtranslation using English as the pivot language (except for English itself, where French served as the intermediate language). This process leveraged Hugging Face's MarianMTModel transformer ([documentation](https://huggingface.co/docs/transformers/model_doc/marian)), though the remaining three languages required alternative methods due to unsupported translation combinations.
 
 The workflow began by creating eight language-specific subsets from clean_df (df_en, df_es, df_fr, etc.), each filtered by their respective lang1 values. Using MarianMTModel, we first translated sentences from the original language to the pivot language, then back to the source language. This two-step process maintained semantic meaning while varying lexical choices.
 
 To optimize performance, we implemented batch translation monitored via tqdm, supported by two core functions:  
-1. `translate_batch()` handling batch conversions between language pairs  
-2. `back_translate()` managing the complete two-step process  
+1. `translate_batch()` handles batch conversions between language pairs  
+2. `back_translate()` manages the complete two-step process  
 
 We utilized pretrained Hugging Face translation models (e.g., Helsinki-NLP/opus-mt-en-fr) with automatic GPU acceleration when available. The output generated augmented DataFrames (df_en_aug, df_es_aug, etc.) containing paraphrased sentences that enhanced both dataset size and NLP model robustness.
 
 
-### SECOND PART
+### SECOND PHASE
 
 For Portuguese and Polish, we implemented a word-level substitution method based on synonymic and semantic replacement strategies. This approach was necessary because MarianMTModel didn't adequately support these languages for backtranslation.
 
@@ -59,7 +59,7 @@ The process began with tokenizing sentences from the "sentence1" column for both
 
 Each sentence underwent tokenization, lowercasing, and word-by-word analysis. Words found in our substitution dictionary were replaced, while others remained unchanged. The modified sentences were stored in a new column named `sentence1_aug`, and the paraphrased outputs for both languages were combined into a single DataFrame called `df_paraphrased`.
   
-### THIRD PART  
+### THIRD PHASE  
 
 For Japanese (ja), we employed **Rinna's Japanese GPT-2 Medium** (AutoModelForCausalLM) due to NLTK's limited support for this language. The model documentation can be found on Hugging Face: [Rinna Japanese GPT-2 Medium](https://huggingface.co/rinna/japanese-gpt2-medium). Unlike our approach with other languages, this method didn't paraphrase sentences but instead generated continuations of the input sentences.
 
@@ -78,7 +78,7 @@ The `compute_similarity(row)` function handled the core calculation, encoding bo
 
 ## 3. Model Development and Evaluation
 
-To create our final dataset, we merged `clean_df` with all newly created datasets (`df_en_aug`, `df_es_aug`, etc.), resulting in the `augmented_df` containing 1,881,076 rows. After removing duplicates and NA values, we obtained the cleaned `final_df` with 1,847,162 rows - representing a 96.5% increase from the original `clean_df`.
+To create our final dataset, we merged `clean_df` with all newly created datasets (`df_en_aug`, `df_es_aug`, etc.), resulting in the `augmented_df` containing 1,881,076 rows. After removing duplicates and NA values, we obtained the cleaned `final_df` with 1,847,162 rows, representing a 96.5% increase from the original `clean_df`.
 
 ### Model Development
 
@@ -91,7 +91,7 @@ We first tested our approach on a 50,000-row subset (`small_df`) for faster iter
 
 For the complete `final_df`, we maintained the same seed (42) for an 80-20 train-test split, removing score values from test data. The model accepted tokenized sentences truncated to 32 tokens for efficiency, paired with similarity scores. 
 
-The `BERTSimilarityModel` architecture built upon BERT with:
+The `BERTSimilarityModel` architecture is built upon BERT with:
 - Dropout layers for regularization  
 - Linear regression head for score prediction  
 - Input handling for `input_ids`, `attention_mask`, and `token_type_ids`  
@@ -126,7 +126,7 @@ The obtained results demonstrate strong model performance on the training data. 
 
 ## 5. Conclusions
 
-The project successfully developed a multilingual BERT model for semantic similarity prediction, achieving strong performance metrics (MSE: \[value], MAE: \[value], R²: \[value]) that demonstrate its effectiveness in capturing cross-lingual semantic relationships. These results validate our approach combining data augmentation techniques with transformer architecture.
+The project successfully developed a multilingual BERT model for semantic similarity prediction, achieving strong performance metrics (MSE: \[value], MAE: \[value], R²: \[value]) that demonstrate its effectiveness in capturing cross-lingual semantic relationships. These results validate our approach, combining data augmentation techniques with transformer architecture.
 
 While the current implementation shows promising results, several improvements could enhance the model's robustness. For example:
 
