@@ -1,6 +1,26 @@
 # Rosetta Stone  
 **Brandetti Claudia, Mammetti Francesco, Sarcina Daniele**  
 
+# Libraries used
+* Counter: used to count word frequencies - https://docs.python.org/3/library/collections.html#counter-objects
+* pandas: for handling and processing tabular data - https://pandas.pydata.org/docs/
+* numpy: for numerical operations and array handling - https://numpy.org/doc/
+* torch: PyTorch, used for building and training neural networks - https://docs.pytorch.org/docs/stable/index.html
+* tqdm: adds progress bars to loops (e.g., during training) - https://tqdm.github.io/
+* warnings: to suppress or handle warning messages - https://docs.python.org/3/library/warnings.html
+* fasttext: library for efficient word embeddings and language detection - https://fasttext.cc/docs/en/supervised-tutorial.html
+* nltk: natural language processing tools (e.g., tokenization, stopwords) - https://www.nltk.org/
+* sklearn: scikit-learn, used here for data splitting and evaluation metrics - https://scikit-learn.org/stable/
+* random: for random number generation and reproducibility - https://docs.python.org/3/library/random.html
+
+### Transformers
+* BertTokenizer, BertModel: BERT tokenizer and model used for sentence encoding
+* MarianMTModel, MarianTokenizer: machine translation model/tokenizer from HuggingFace for back-translation
+* AutoTokenizer, AutoModelForCausalLM: generic tokenizer and causal language model interface from HuggingFace
+* SentenceTransformer (SBert): to calculate the similarity score for Japanese
+
+More in-depth explanation of how the transfomers have been used can be found later on.
+
 ## INTRODUCTION  
 The goal of the project is to develop a model for semantic similarity between two sentences in different languages, trained on the augmented multilingual dataset from the Rosetta Stone.  
 
@@ -116,9 +136,9 @@ We employed three complementary evaluation metrics to thoroughly assess model pe
 - **R² Score**: 0.6966  
 
 ### Results on Full Dataset
-- **MSE**: [value]  
-- **MAE**: [value]  
-- **R² Score**: [value]  
+- **MSE**: 0.0339  
+- **MAE**: 0.1062
+- **R² Score**: 0.9844  
 
 ## 4. Results
 
@@ -126,7 +146,7 @@ The obtained results demonstrate strong model performance on the training data. 
 
 ## 5. Conclusions
 
-The project successfully developed a multilingual BERT model for semantic similarity prediction, achieving strong performance metrics (MSE: \[value], MAE: \[value], R²: \[value]) that demonstrate its effectiveness in capturing cross-lingual semantic relationships. These results validate our approach, combining data augmentation techniques with transformer architecture.
+The project successfully developed a multilingual BERT model for semantic similarity prediction, achieving strong performance metrics (MSE: 0.0339, MAE: 0.1062, R²: 0.9844) that demonstrate its effectiveness in capturing cross-lingual semantic relationships. These results validate our approach, combining data augmentation techniques with transformer architecture.
 
 While the current implementation shows promising results, several improvements could enhance the model's robustness. For example:
 
