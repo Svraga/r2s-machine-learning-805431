@@ -22,7 +22,7 @@ The resulting dataset, named `clean_df`, consists of **940,538 rows** and the **
 
 ## 2. Data Augmentation
 
-To expand the dataset, we implemented three distinct approaches to handle all languages effectively. In each case, we only paraphrased the "sentence1" column while preserving both "sentence2" and the original similarity scores, as the semantic meaning remained unchanged through rephrasing.
+To expand the dataset, we implemented three distinct approaches to effectively handle all languages. In each case, we only paraphrased the "sentence1" column while preserving both "sentence2" and the original similarity scores, as the semantic meaning remained unchanged through rephrasing.
 
 The languages were processed in three phases:  
 - **First Phase**: English (en), Spanish (es), French (fr), Italian (it), German (de), Chinese (zh), Dutch (nl), Russian (ru)  
@@ -52,7 +52,7 @@ We utilized pretrained word vectors from the FastText library ([available here](
 
 After installing FastText, we temporarily loaded the pretrained models for Portuguese (`cc.pt.300.bin`) and Polish (`cc.pl.300.bin`). These models enabled us to find semantically similar words for substitution.
 
-The process began with tokenizing sentences from the "sentence1" column for both languages. We focused on the most relevant vocabulary by extracting the top 500 most frequent words. For synonym replacement, we applied three key rules:
+The process began with tokenizing sentences, through NLTK, from the "sentence1" column for both languages. We focused on the most relevant vocabulary by extracting the top 500 most frequent words. For synonym replacement, we applied three key rules:
 1. Only words with similarity ≥ 0.75 were retained
 2. Words were never replaced with themselves
 3. Original words were kept when no suitable synonym was found
