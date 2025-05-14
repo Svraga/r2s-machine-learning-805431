@@ -1,6 +1,4 @@
-"""
-Versione semplificata dell'app che serve file HTML direttamente invece di usare templates Flask
-"""
+
 from flask import Flask, send_from_directory, request, jsonify
 import os
 import torch
