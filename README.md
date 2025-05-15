@@ -19,13 +19,13 @@
 * AutoTokenizer, AutoModelForCausalLM: generic tokenizer and causal language model interface from HuggingFace
 * SentenceTransformer (SBert): to calculate the similarity score for Japanese
 
-More in-depth explanation of how the transfomers have been used can be found later on.
+More in-depth explanation of how the transformers have been used can be found later on.
 
 ## INTRODUCTION  
 The goal of the project is to develop a model for semantic similarity between two sentences in different languages, trained on the augmented multilingual dataset from the Rosetta Stone.  
 
 ## METHODS  
-The provided dataset includes eleven languages: English (en), Spanish (es), French (fr), Italian (it), Japanese (ja), Dutch (nl), Polish (pl), Portuguese (pt), Russian (ru), Chinese (zh), and German (de). It consists of 959,080 rows and 5 columns: `'sentence1'`, `'sentence2'`, `'lang1'`, `'lang2'`, and `'similarity score'`, where sentences in each language are translated into all other languages. Some sentences share the same meaning, resulting in a high similarity score, while others differ and therefore have a low score.  
+The provided dataset includes eleven languages: English (en), Spanish (es), French (fr), Italian (it), Japanese (ja), Dutch (nl), Polish (pl), Portuguese (pt), Russian (ru), Chinese (zh), and German (de). It consists of 959,080 rows and 5 columns: `'sentence1'`, `'sentence2'`, `'score'`, `'lang1'`, and `'lang2'`, where sentences in each language are translated into all other languages. Some sentences share the same meaning, resulting in a high similarity score, while others differ and therefore have a low score.  
 
 We divided the process into three phases: **Data Processing**, **Data Augmentation**, and **Model Development and Evaluation**.  
 
@@ -44,7 +44,7 @@ The resulting dataset, named `clean_df`, consists of **940,538 rows** and the **
 
 To expand the dataset, we implemented three distinct approaches to effectively handle all languages. In each case, we only paraphrased the "sentence1" column while preserving both "sentence2" and the original similarity scores, as the semantic meaning remained unchanged through rephrasing.
 
-The languages were processed in three phases:  
+The languages were processed in three different phases:  
 - **First Phase**: English (en), Spanish (es), French (fr), Italian (it), German (de), Chinese (zh), Dutch (nl), Russian (ru)  
 - **Second Phase**: Portuguese (pt), Polish (pl)  
 - **Third Phase**: Japanese (ja)  
@@ -59,7 +59,7 @@ To optimize performance, we implemented batch translation monitored via tqdm, su
 1. `translate_batch()` handles batch conversions between language pairs  
 2. `back_translate()` manages the complete two-step process  
 
-We utilized pretrained Hugging Face translation models (e.g., Helsinki-NLP/opus-mt-en-fr) with automatic GPU acceleration when available. The output generated augmented DataFrames (df_en_aug, df_es_aug, etc.) containing paraphrased sentences that enhanced both dataset size and NLP model robustness.
+We utilized pretrained Hugging Face translation models (e.g., Helsinki-NLP/opus-mt-en-fr). The output generated augmented DataFrames (df_en_aug, df_es_aug, etc.) containing paraphrased sentences that enhanced both dataset size and NLP model robustness.
 
 
 ### SECOND PHASE
