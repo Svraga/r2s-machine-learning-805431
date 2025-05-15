@@ -9,9 +9,9 @@ A simple web application that calculates the semantic similarity between two sen
 
 ### Required Files
 You only need these 3 files in the same directory:
-- [`app.py`]- The main application file
-- [`bert_similarity_model_weights.pth`] - Model weights (download from weights folder)
-- [`requirements.txt`] - Python dependencies
+- `app.py`- The main application file
+- `bert_similarity_model_weights.pth` - Model weights 
+- `requirements.txt` - Python dependencies
 
 ### Installation and Setup
 
